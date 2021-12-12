@@ -17,7 +17,7 @@ function Get-SecEditProperty {
     }
 
     if ($Property -ne '') {
-        Write-Output $hashtable.$Property
+        Write-Output  @{$Property = $hashtable.$Property}
     } else {
         Write-Output $hashtable
     }

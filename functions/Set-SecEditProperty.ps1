@@ -7,6 +7,8 @@ function Set-SecEditProperty {
         [Parameter(Mandatory=$true)]
         [string] $Value,
         [Parameter(Mandatory=$false)]
+        [switch] $Silent = $false,
+        [Parameter(Mandatory=$false)]
         [switch] $Force
     )
 
@@ -43,6 +45,7 @@ function Set-SecEditProperty {
 
     Import-SecEditConfiguration @params -quiet
 
-    #Remove-Item "C:\Windows\security\database\$guid.sdb" -Force
-    #Remove-Item "C:\Windows\security\database\$guid.jfm" -Force
+    if ($Silent -eq $false) {
+        Get-SecEditProperty -Property $Property | Format-Table
+    }
 }
